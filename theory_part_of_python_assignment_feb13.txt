@@ -1,0 +1,86 @@
+Q1. Explain why we have to use the Exception class while creating a Custom Exception.
+Note: Here Exception class refers to the base class for all the exceptions.
+Ans--> When creating a custom exception, it's important to use the Exception class as the base class for the new exception because it provides a standard interface and behavior for handling errors in Python. By inheriting from the Exception class, the new custom exception will have access to all the methods and attributes of the base class, including the ability to set custom error messages and stack traces.
+
+In addition, using the Exception class ensures that the new custom exception will be compatible with existing code that uses the try-except block to catch exceptions. This allows for a consistent and predictable error-handling behavior across different parts of the codebase.
+
+Overall, using the Exception class as the base class for a custom exception is a best practice in Python, as it ensures that the new exception is well-behaved and integrates seamlessly with the rest of the language's exception handling mechanisms.
+
+Q3. What errors are defined in the ArithmeticError class? Explain any two with an example.
+Ans--> The ArithmeticError class is a base class for exceptions that occur during arithmetic operations. It has several subclasses that represent specific types of arithmetic errors, including:
+
+1. ZeroDivisionError: Raised when a division or modulo operation is attempted with a divisor of zero.
+Example:
+# Attempting to divide by zero will raise a ZeroDivisionError
+a = 10
+b = 0
+c = a / b  # Raises ZeroDivisionError: division by zero
+
+2. OverflowError: Raised when an arithmetic operation exceeds the maximum representable value.
+Example:
+# Attempting to perform an arithmetic operation that exceeds the maximum representable value will raise an OverflowError
+a = 2 ** 1024
+b = a * a  # Raises OverflowError: int too large to convert to float
+
+In the first example, a ZeroDivisionError is raised because the second operand of the division operator is zero. In the second example, an OverflowError is raised because the result of the multiplication operation exceeds the maximum representable integer value.
+
+By using these specific subclasses of ArithmeticError, you can catch and handle these errors separately from other types of arithmetic errors, or choose to handle them in a special way that's appropriate for your application.
+
+Q4. Why LookupError class is used? Explain with an example KeyError and IndexError.
+Ans-->  The LookupError class is used as a base class for exceptions that occur when a key or index is not found in a container, such as a dictionary or list.
+
+A KeyError is a specific type of LookupError that occurs when you try to access a key that does not exist in a dictionary. For example, consider the following code:
+my_dict = {'a': 1, 'b': 2, 'c': 3}
+value = my_dict['d']
+
+In this case, a KeyError would be raised, since the key 'd' does not exist in the dictionary.
+
+An IndexError is another type of LookupError that occurs when you try to access an index that is out of range in a sequence, such as a list or tuple. For example:
+my_list = [1, 2, 3]
+value = my_list[3]
+
+In this case, an IndexError would be raised, since the list only has 3 elements and the index 3 is out of range.
+
+In both cases, the LookupError class is used as a base class for the exception, indicating that the error occurred because a lookup failed.
+
+Q5. Explain ImportError. What is ModuleNotFoundError?
+Ans--> In Python, ImportError is an exception that is raised when a module or a package cannot be imported. This can happen if the module or package doesn't exist, if there are issues with the file permissions, or if there is a syntax error in the code.
+
+For example, consider the following code:
+try:
+    import my_module
+except ImportError:
+    print("Unable to import my_module")
+
+In this case, if the my_module module does not exist or cannot be imported for some other reason, an ImportError would be raised, and the code within the except block would be executed.
+
+ModuleNotFoundError is a subclass of ImportError that is introduced in Python 3.6 to make it more clear and specific when a module cannot be found. Prior to Python 3.6, when a module was not found, a generic ImportError was raised.
+
+For example, consider the following code:
+try:
+    import my_missing_module
+except ModuleNotFoundError:
+    print("The module my_missing_module could not be found")
+
+In this case, if the my_missing_module module does not exist, a ModuleNotFoundError would be raised, and the code within the except block would be executed.
+
+Q6. List down some best practices for exception handling in python.
+Ans--> Here are some best practices for exception handling in Python:
+
+Use specific exception types: Instead of catching a generic exception like Exception, catch specific exceptions that you expect to occur, such as ValueError, TypeError, or IOError.
+
+Keep try blocks small: Wrap only the code that may raise an exception within a try block. This makes it easier to pinpoint the source of the exception.
+
+Provide detailed error messages: Include detailed error messages that describe what went wrong, and where the error occurred. This helps with debugging and can speed up the resolution of the issue.
+
+Use finally block: Use a finally block to execute any cleanup code that should always run, whether an exception occurred or not.
+
+Avoid catching exceptions silently: Avoid catching exceptions without doing anything with them. At the very least, log the exception so that you can investigate and address the issue later.
+
+Don't catch all exceptions: Avoid using a blanket except statement to catch all exceptions. This can make it harder to diagnose problems, and can hide issues that need to be addressed.
+
+Reraise exceptions when necessary: Sometimes, it makes sense to catch an exception and then raise a different exception to provide more information or to handle the error differently.
+
+Follow PEP 8 guidelines: Follow PEP 8 guidelines for writing clean and consistent code, including naming conventions and whitespace guidelines.
+
+By following these best practices, you can write more robust and maintainable code that handles exceptions effectively.
